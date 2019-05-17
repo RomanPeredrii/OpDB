@@ -1,0 +1,10 @@
+Footer {
+    height: 5vh;
+    width: auto;
+    flex: 0 0 auto;
+    background-color: #1a181854;
+    color: #ffffff; 
+    border-radius: 0.25em;
+    text-align: center;
+    border: 0px solid #00000026;
+} 

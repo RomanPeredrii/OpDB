@@ -2,6 +2,7 @@ import React from 'react';
 //import logo from '../logo.svg';
 import './App.css';
 import Login from '../pages/Login/Login';
+import Footer from '../components/Footer/Footer';
 
 function App() {
   return (
@@ -13,9 +14,7 @@ function App() {
       <main>
         <Login />
       </main>
-      <footer>
-
-      </footer>
+      <Footer />
     </div>
   );
 }
