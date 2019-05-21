@@ -1,0 +1,1 @@
+Basic result for standard response.

@@ -8,9 +8,6 @@ router.get('/', function (req, res, next) {
     if (err) return res.send('failed reading of page')
     return res.send(file);
   });
-
-
-
 });
 
 module.exports = router;

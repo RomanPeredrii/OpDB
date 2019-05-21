@@ -1,10 +1,12 @@
 Footer {
-    height: 5vh;
+    height: 10vh;
     width: auto;
+    max-width: 85vh;
     flex: 0 0 auto;
     background-color: #1a181854;
     color: #ffffff; 
     border-radius: 0.25em;
     text-align: center;
-    border: 0px solid #00000026;
+    margin: 0 auto;
+    border: 0;
 } 
