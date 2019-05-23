@@ -6,25 +6,22 @@ const mongo = require('../layers/mongo');
 log('result: ', makeResult());
 
 //!! - the auth router
-router.post('/auth', async (req, res, next) => {
+module.exports = auth = async (req) => {
     let result ;
     // !! - get session 
     const user = await mongo.getUser(req.body.UserLogInfo)
     if (user.token) {
-
-
         result = makeResult({ ok: true, logged: true });
         log('result: ', result);
-        res.cookie('token', user.token, { maxAge: 60000000, httpOnly: true })
+ ///!!!!!       res.cookie('token', user.token, { maxAge: 60000000, httpOnly: true })
     };
     if (user.username === "Admin") {
         result = makeResult({ ok: true, logged: true });
         result.admin = true;
         result.logged = true;
     };
-    res.json(result(req));
 
-});
+    return result;
 
 
-module.exports = router;
+  //  make return for auth router!!!!!!!!!!!!!!!!!!!!!!!!!!

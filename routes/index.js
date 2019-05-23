@@ -1,13 +1,27 @@
-var express = require('express');
-var router = express.Router();
-let fs = require('fs');
+const createError = require('http-errors');
 
-/* GET home page. */
-router.get('/', function (req, res, next) {
-  fs.readFile('/frontopdb/build/index.html', 'utf-8', (err, file) => {
-    if (err) return res.send('failed reading of page')
-    return res.send(file);
+
+module.exports = function (app) {
+    
+  // !! - routes
+  app.use('/', require('./root'));
+  app.use('/api/auth', require('./auth'));
+  
+  // catch 404 and forward to error handler
+  app.use(function (req, res, next) {
+    next(createError(404));
   });
-});
 
-module.exports = router;
+  // error handler
+  app.use(function (err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
+  });
+};
+
+

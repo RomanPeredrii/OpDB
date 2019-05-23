@@ -31,9 +31,10 @@
 
  button {
     font-size: 14px;
+    color: #ffffff;
     padding: 0.2em;
     margin: 1em;
     border:0;
     border-radius: 0.2em;
-    background:#f1f1f1;
+    background:#4ca3f5;
  }

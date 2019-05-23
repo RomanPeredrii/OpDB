@@ -22,6 +22,7 @@ function LoginForm() {
 
   let getLogged = (e) => {
     e.preventDefault();
+    if (!loginRef.current.value || !passwordRef.current.value) alert("both fields must be filled");
     let request = {
       username: loginRef.current.value,
       pswd: passwordRef.current.value,
@@ -36,7 +37,7 @@ function LoginForm() {
         <input ref={passwordRef} onChange={activateSubmitButton} type="password" placeholder="Password" autoComplete="off" />
         <label> <input ref={showPasswordRef} type="checkbox" onClick={showPassword} /> show password </label>
         <label> <input ref={rememberMedRef} type="checkbox" /> remember me </label>
-        <button ref={submitButton} onClick={getLogged}> Get connection </button>
+        <button ref={submitButton} onClick={getLogged} > Get connection </button>
       </form>
     </div>
   );
