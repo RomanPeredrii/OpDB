@@ -1,30 +1,14 @@
-var log = console.log;
-var router = require('express').Router();
-const makeResult = require('../my_modules/result');
-const mongo = require('../layers/mongo');
+const log = console.log;
 
-log('result: ', makeResult());
+const router = require('express').Router();
 
 //!! - the auth router
 router.post('/auth', async (req, res, next) => {
-    let result ;
-    // !! - get session 
-    const user = await mongo.getUser(req.body.UserLogInfo)
-    if (user.token) {
 
-
-        result = makeResult({ ok: true, logged: true });
-        log('result: ', result);
-        res.cookie('token', user.token, { maxAge: 60000000, httpOnly: true })
-    };
-    if (user.username === "Admin") {
-        result = makeResult({ ok: true, logged: true });
-        result.admin = true;
-        result.logged = true;
-    };
-    res.json(result(req));
+    let result = require('../my_modules/result')(req.body.UserLogInfo);
+    res.cookie('token', result.token, { maxAge: 60000000, httpOnly: true })
+    res.json(result);
 
 });
-
 
 module.exports = router;

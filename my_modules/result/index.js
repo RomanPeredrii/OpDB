@@ -2,6 +2,7 @@
 module.exports = result = (init) => {
   const defolt = {
     ok: false,
+    token: null,
     admin: false,
     error: false,
     unlogged: false,
