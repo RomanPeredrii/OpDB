@@ -1,5 +1,5 @@
 
-module.exports = request = (init) => {
+let request = (init) => {
   const defolt = {
     username: null,
     pswd: null,
@@ -7,10 +7,5 @@ module.exports = request = (init) => {
   };
   return { ...defolt, ...init };
 };
-/**
- * Try decoding a string using a decoding function.
- *
- * @param {obj} parameters
- * @return {obj} obj
- * 
- */
+
+ export default {request}

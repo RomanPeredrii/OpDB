@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import './Login-form.css';
-import * as requestXXX from '../../my_modules/request/index.js';
+import request from '../../my_modules/request/index.js';
 
 const log = console.log;
 const headers = {
@@ -26,7 +26,7 @@ function LoginForm() {
     e.preventDefault();
     if (!loginRef.current.value || !passwordRef.current.value) alert("both fields must be filled");
     try {
-       let authRequest = requestXXX({
+       let authRequest = request({
         username: loginRef.current.value,
         pswd: passwordRef.current.value,
         rmb: rememberMedRef.current.checked
