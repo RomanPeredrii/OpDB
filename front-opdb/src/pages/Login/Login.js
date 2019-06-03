@@ -1,14 +1,12 @@
 import React from 'react';
 import './Login.css';
-import  LoginForm from '../../components/Login-form/Login-form';
+import LoginForm from '../../components/Login-form/Login-form';
 
 
-function Login() {
-    
+function Login(props) {
   return (
     <div className="Login">
-    <LoginForm />
-
+      <LoginForm history={props.history} />
     </div>
   );
 }

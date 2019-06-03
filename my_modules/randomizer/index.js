@@ -1,12 +1,6 @@
 
 
 
-/**
-* Try decoding a string using a decoding function.
-*
-* @return { string } token
-*
-*/
 function token () {
   // !! - make token
   let text = "";
@@ -18,4 +12,4 @@ function token () {
 
 };
 
-module.exports = token;
+module.exports = {token};

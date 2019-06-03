@@ -1,20 +1,25 @@
 import React, { useRef } from 'react';
 import './Login-form.css';
-import request from '../../my_modules/request/index.js';
+import { request } from '../../my_modules/request/index.js';
 
 const log = console.log;
 const headers = {
   'Accept': 'application/json',
   'Content-Type': 'application/json'
 };
-
-function LoginForm() {
+log(request);
+function LoginForm(props) {
   let loginRef = useRef();
   let passwordRef = useRef();
   let showPasswordRef = useRef();
   let rememberMedRef = useRef();
   let submitButton = useRef();
 
+  function getWorkPage() {
+    console.log(props);
+    props.history.push("/work");
+
+  }
 
   //!! just change password perfomance
   let showPassword = () => {
@@ -26,11 +31,11 @@ function LoginForm() {
     e.preventDefault();
     if (!loginRef.current.value || !passwordRef.current.value) alert("both fields must be filled");
     try {
-       let authRequest = request({
+      const authRequest = request({
         username: loginRef.current.value,
         pswd: passwordRef.current.value,
         rmb: rememberMedRef.current.checked
-      })
+      });
       log(authRequest);
 
       const rawResponse = await fetch('/api/auth/login', {
@@ -40,9 +45,15 @@ function LoginForm() {
       });
 
       const result = await rawResponse.json();
-      if (result.error) alert('USER OR PASSWORD INCORRECT');
-      else if (result.admin) window.location.replace('/pages/admin');
-      else if (result.ok) window.location.replace('/pages/work');
+
+      log("", result);
+      if (result.error)
+        alert('USER OR PASSWORD INCORRECT');
+
+      else if (result.ok) getWorkPage(); 
+
+      // else if (result.admin) window.location.replace('/pages/admin');
+      //else if (result.ok) window.location.replace('/pages/work');
     }
     catch (err) { log(err) };
 
