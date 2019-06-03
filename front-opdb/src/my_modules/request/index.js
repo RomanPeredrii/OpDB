@@ -8,4 +8,4 @@ let request = (init) => {
   return { ...defolt, ...init };
 };
 
- export default {request}
+ export {request}
