@@ -1,8 +1,9 @@
 import React from 'react';
 import './Work.css';
 import MainTable from '../../components/Main-table/Main-table';
-function Work() {
 
+
+function Work() {
   return (
     <div className="Work">
       <MainTable />

@@ -1,25 +1,15 @@
 import React, { useRef } from 'react';
 import './Login-form.css';
 import { request } from '../../my_modules/request/index.js';
+import Result from '../../my_modules/result/index.js';
+import {log, headers, goTo} from '../../my_modules/stuff/index';
 
-const log = console.log;
-const headers = {
-  'Accept': 'application/json',
-  'Content-Type': 'application/json'
-};
-log(request);
 function LoginForm(props) {
   let loginRef = useRef();
   let passwordRef = useRef();
   let showPasswordRef = useRef();
   let rememberMedRef = useRef();
   let submitButton = useRef();
-
-  function getWorkPage() {
-    console.log(props);
-    props.history.push("/work");
-
-  }
 
   //!! just change password perfomance
   let showPassword = () => {
@@ -36,27 +26,19 @@ function LoginForm(props) {
         pswd: passwordRef.current.value,
         rmb: rememberMedRef.current.checked
       });
-      log(authRequest);
 
-      const rawResponse = await fetch('/api/auth/login', {
+      const fetchOptions = {
         method: 'POST',
         headers,
         body: JSON.stringify({ authRequest })
-      });
+      };
 
-      const result = await rawResponse.json();
-
-      log("", result);
-      if (result.error)
-        alert('USER OR PASSWORD INCORRECT');
-
-      else if (result.ok) getWorkPage(); 
-
-      // else if (result.admin) window.location.replace('/pages/admin');
-      //else if (result.ok) window.location.replace('/pages/work');
+      (await new Result(fetch('/api/auth/login', fetchOptions)))
+        .ok(_ => goTo(props, "/work"))
+        .admin(_ => goTo(props, "/admin"))
+        .error(r => log('ERROR', r))
     }
     catch (err) { log(err) };
-
   };
   return (
     <div className="LoginForm">
