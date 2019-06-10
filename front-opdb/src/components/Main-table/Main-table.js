@@ -1,31 +1,63 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import './Main-table.css';
+import ContextMenu from '../Context-menu/Context-menu';
+import {log, headers, goTo} from '../../my_modules/stuff/index';
 
-// const log = console.log;
-// const headers = {
-//   'Accept': 'application/json',
-//   'Content-Type': 'application/json'
-// };
+
+const check = () => {return {a:3}} ;
 
 function MainTable() {
+  const [context, setContext] = useState({a:3, b:6, v:0});
+  
+  const showMenu = (e) => {
+    const clickX = e.clientX;
+    const clickY = e.clientY;
+
+
+  }
 
   return (
     <div className="MainTable">
       <table>
-<tr>
-<<<<<<< HEAD
-      {[111111111111, 2222222222, 3333333333, 4444444444444, 555555555555, 666666666666, 77777777777, 888888888888, 9999999999999].map((row) =>
-=======
-      {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((row) =>
->>>>>>> d6a60c74497eaa3dad1ae6fb204479248d24f981
-    
-      <td>
-        {row}
-      </td>
-  )} 
-  </tr>
+        <thead>
+          <tr>
+            {['container',
+              'BL',
+              'client',
+              'discharge',
+              'delivery',
+              'vessel',
+              'customs',
+              'line',
+              'vehicle'].map((row) =>
 
+                <th>
+                  {row}
+                </th>
+              )}
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {[  'HLXU8447492',
+              'HLCUMTR190414386',
+              'TE-STAR',
+              'ODESSA',
+              'CHISINAU',
+              'ROZA A BMX923 13/06/19',
+              'weights',
+              '26/06',
+              ''].map((row) =>
+<td>
+                {/* <td onContextMenu={showMenu}> */}
+                  {row} 
+                </td>
+              )}
+          </tr>
+        </tbody>
       </table>
+      <ContextMenu />
+      <p>{log(context)}</p>
     </div>
   );
 }

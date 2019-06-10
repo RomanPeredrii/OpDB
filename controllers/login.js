@@ -9,7 +9,7 @@ module.exports = login = async (userLogInfo) => {
             ok: true,
             logged: true,
             token: user.token,
-            admin: (user.username == "Admin")
+            admin: (user.username == "admin")
         })
         : makeResult({
             logged: false,

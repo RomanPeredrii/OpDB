@@ -1,3 +1,14 @@
+.MainTable {
+   width: 100%;
+}
+
 table {
+   width: 100%;
    background-color: #f7f5f5;
 }
+
+table th {
+
+   background-color: #d8d2d2;
+}
+
